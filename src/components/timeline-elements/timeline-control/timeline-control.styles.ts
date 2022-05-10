@@ -21,7 +21,7 @@ export const TimelineNavItemLeft = styled.span<{ disable?: boolean }>`
 
 export const TimelineNavItemRight = styled.span<{ disable?: boolean }>`
   position: absolute;
-  right: -49px;
+  right: -18px;
   top: 29px;
   z-index: 10;
 
@@ -30,7 +30,7 @@ export const TimelineNavItemRight = styled.span<{ disable?: boolean }>`
 
 export const TimelineNavItemPlay = styled.span<{ disable?: boolean }>`
   position: absolute;
-  right: -80px;
+  right: -50px;
   top: 28px;
   z-index: 10;
   svg {
