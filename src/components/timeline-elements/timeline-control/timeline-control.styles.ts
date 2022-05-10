@@ -10,6 +10,36 @@ export const TimelineNavWrapper = styled.ul<{ theme?: Theme }>`
   padding: 0.25em 0.25em;
 `;
 
+export const TimelineNavItemLeft = styled.span<{ disable?: boolean }>`
+  position: absolute;
+  left: -18px;
+  top: 29px;
+  z-index: 10;
+
+  ${(p) => (p.disable ? 'pointer-events: none; filter: opacity(0.9)' : '')};
+`;
+
+export const TimelineNavItemRight = styled.span<{ disable?: boolean }>`
+  position: absolute;
+  right: -18px;
+  top: 29px;
+  z-index: 10;
+
+  ${(p) => (p.disable ? 'pointer-events: none; filter: opacity(0.9)' : '')};
+`;
+
+export const TimelineNavItemPlay = styled.span<{ disable?: boolean }>`
+  position: absolute;
+  right: -50px;
+  top: 28px;
+  z-index: 10;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  ${(p) => (p.disable ? 'pointer-events: none; filter: opacity(0.7)' : '')};
+`;
+
 export const TimelineNavItem = styled.li<{ disable?: boolean }>`
   padding: 0.1em;
   display: flex;
@@ -24,19 +54,19 @@ export const TimelineNavButton = styled.button<{
   theme?: Theme;
 }>`
   align-items: center;
-  background: ${(p) => p.theme.primary};
-  border-radius: 50%;
+  background: transparent;
+  // border-radius: 50%;
   border: 0;
-  color: #fff;
+  color: ${(p) => p.theme.primary};
   cursor: pointer;
   display: flex;
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.25));
-  height: 20px;
+  // filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.25));
+  height: 35px;
+  width: 35px;
   justify-content: center;
   margin: 0 0.2em;
   padding: 0;
   transition: all 0.1s ease-in;
-  width: 20px;
 
   transform: ${(p) => {
     if (p.rotate === 'TRUE') {
@@ -50,14 +80,15 @@ export const TimelineNavButton = styled.button<{
   }
 
   svg {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
   }
 `;
 
 export const TimelineControlContainer = styled.div<{
   flip?: boolean;
   slideShowActive?: boolean;
+  mode?: string;
 }>`
   align-items: center;
   display: flex;
