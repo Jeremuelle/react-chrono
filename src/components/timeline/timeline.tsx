@@ -18,12 +18,22 @@ import TimelineVertical from '../timeline-vertical/timeline-vertical';
 import {
   Outline,
   TimelineContentRender,
-  TimelineControlContainer,
   TimelineMain,
   TimelineMainWrapper,
   Wrapper,
 } from './timeline.style';
 
+import ChevronLeft from '../icons/chev-left';
+import ChevronRightIcon from '../icons/chev-right';
+
+import ReplayIcon from '../icons/replay-icon';
+import {
+  TimelineControlContainer,
+  TimelineNavButton,
+  TimelineNavItemLeft,
+  TimelineNavItemRight,
+  TimelineNavItemPlay,
+} from '../timeline-elements/timeline-control/timeline-control.styles';
 const Timeline: React.FunctionComponent<TimelineModel> = (
   props: TimelineModel,
 ) => {
@@ -232,6 +242,20 @@ const Timeline: React.FunctionComponent<TimelineModel> = (
     };
     // eslint-disable-next-line
   }, []);
+  const flippedHorizontally = useMemo(
+    () => flipLayout && mode === 'HORIZONTAL',
+    [],
+  );
+
+  const disableLeft = flipLayout
+    ? activeTimelineItem === items.length - 1
+    : activeTimelineItem === 0;
+
+  const rotate = useMemo(() => mode !== 'HORIZONTAL', [mode]);
+
+  const disableRight = flipLayout
+    ? activeTimelineItem === 0
+    : activeTimelineItem === items.length - 1;
 
   return (
     <Wrapper
@@ -245,6 +269,27 @@ const Timeline: React.FunctionComponent<TimelineModel> = (
         setHasFocus(true);
       }}
     >
+      {/* previous */}
+      {!hideControls && mode === 'HORIZONTAL' && (
+        <TimelineNavItemLeft
+          disable={disableLeft}
+          className="timeline-control-prev"
+        >
+          <TimelineNavButton
+            mode={mode}
+            theme={theme}
+            onClick={flippedHorizontally ? onNext : onPrevious}
+            title="Previous"
+            aria-label="previous"
+            aria-disabled={disableLeft}
+            aria-controls="timeline-main-wrapper"
+            tabIndex={!disableLeft ? 0 : -1}
+            rotate={rotate ? 'TRUE' : 'FALSE'}
+          >
+            <ChevronLeft />
+          </TimelineNavButton>
+        </TimelineNavItemLeft>
+      )}
       <TimelineMainWrapper
         ref={timelineMainRef}
         scrollable={canScrollTimeline}
@@ -330,9 +375,44 @@ const Timeline: React.FunctionComponent<TimelineModel> = (
           />
         ) : null}
       </TimelineMainWrapper>
-
+      {/* next */}
+      {!hideControls && mode === 'HORIZONTAL' && (
+        <TimelineNavItemRight
+          disable={disableRight}
+          className="timeline-control-next"
+        >
+          <TimelineNavButton
+            mode={mode}
+            theme={theme}
+            onClick={flippedHorizontally ? onPrevious : onNext}
+            title="Next"
+            aria-label="next"
+            aria-disabled={disableRight}
+            aria-controls="timeline-main-wrapper"
+            rotate={rotate ? 'TRUE' : 'FALSE'}
+            tabIndex={!disableRight ? 0 : -1}
+          >
+            <ChevronRightIcon />
+          </TimelineNavButton>
+        </TimelineNavItemRight>
+      )}
+      {/* slideshow button */}
+      {slideShowEnabled && (
+        <TimelineNavItemPlay>
+          <TimelineNavButton
+            theme={theme}
+            onClick={onRestartSlideshow}
+            title="Play Slideshow"
+            tabIndex={0}
+            aria-controls="timeline-main-wrapper"
+            aria-label="Play Slideshow"
+          >
+            <ReplayIcon />
+          </TimelineNavButton>
+        </TimelineNavItemPlay>
+      )}
       {/* Timeline Controls */}
-      {!hideControls && (
+      {!hideControls && mode === 'VERTICAL' && (
         <TimelineControlContainer mode={mode}>
           <TimelineControl
             disableLeft={
