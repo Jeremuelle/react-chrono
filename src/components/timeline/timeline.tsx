@@ -27,6 +27,7 @@ import ChevronLeft from '../icons/chev-left';
 import ChevronRightIcon from '../icons/chev-right';
 
 import ReplayIcon from '../icons/replay-icon';
+import PipeIcon from '../icons/pipe';
 import {
   TimelineControlContainer,
   TimelineNavButton,
@@ -286,7 +287,7 @@ const Timeline: React.FunctionComponent<TimelineModel> = (
             tabIndex={!disableLeft ? 0 : -1}
             rotate={rotate ? 'TRUE' : 'FALSE'}
           >
-            <ChevronLeft />
+            {!disableLeft ? <ChevronLeft /> : <PipeIcon />}
           </TimelineNavButton>
         </TimelineNavItemLeft>
       )}
@@ -392,7 +393,7 @@ const Timeline: React.FunctionComponent<TimelineModel> = (
             rotate={rotate ? 'TRUE' : 'FALSE'}
             tabIndex={!disableRight ? 0 : -1}
           >
-            <ChevronRightIcon />
+            {!disableRight ? <ChevronRightIcon /> : <PipeIcon />}
           </TimelineNavButton>
         </TimelineNavItemRight>
       )}
