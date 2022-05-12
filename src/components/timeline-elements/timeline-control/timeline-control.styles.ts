@@ -16,16 +16,18 @@ export const TimelineNavItemLeft = styled.span<{ disable?: boolean }>`
   top: 29px;
   z-index: 10;
 
-  ${(p) => (p.disable ? 'pointer-events: none; filter: opacity(0.8)' : '')};
+  ${(p) => (p.disable ? 'pointer-events: none; filter: opacity(0.9)' : '')};
 `;
 
 export const TimelineNavItemRight = styled.span<{ disable?: boolean }>`
   position: absolute;
-  right: -18px;
   top: 29px;
   z-index: 10;
 
-  ${(p) => (p.disable ? 'pointer-events: none; filter: opacity(0.8)' : '')};
+  ${(p) =>
+    p.disable
+      ? 'pointer-events: none; filter: opacity(0.9); right: -22px; '
+      : 'right: -18px'};
 `;
 
 export const TimelineNavItemPlay = styled.span<{ disable?: boolean }>`
