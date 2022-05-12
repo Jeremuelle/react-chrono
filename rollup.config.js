@@ -1,12 +1,12 @@
-import babel from "@rollup/plugin-babel";
-import buble from "@rollup/plugin-buble";
-import common from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
-import typescript from "rollup-plugin-typescript2";
-import cssnano from "cssnano";
-import postcss from "rollup-plugin-postcss"
-import pkg from "./package.json";
-import { terser } from "rollup-plugin-terser";
+import babel from '@rollup/plugin-babel';
+import buble from '@rollup/plugin-buble';
+import common from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import typescript from 'rollup-plugin-typescript2';
+import cssnano from 'cssnano';
+import postcss from 'rollup-plugin-postcss';
+import pkg from './package.json';
+import { terser } from 'rollup-plugin-terser';
 
 const banner = `/*
  * ${pkg.name}
@@ -22,13 +22,6 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      exports: 'named',
-      strict: true,
-      banner,
-    },
-    {
-      file: pkg.module,
-      format: 'es',
       exports: 'named',
       strict: true,
       banner,
@@ -85,7 +78,7 @@ export default {
       },
       format: {
         comments: false,
-      }
+      },
     }),
   ],
   external: ['react', 'react-dom', '@babel/runtime'],
