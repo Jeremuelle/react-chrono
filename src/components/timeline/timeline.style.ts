@@ -14,7 +14,7 @@ export const Wrapper = styled.div<{
     outline: 0;
   }
 
-  overflow: hidden;
+  // overflow: hidden;
   position: relative;
   user-select: none;
   width: 100%;
