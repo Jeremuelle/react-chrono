@@ -398,7 +398,7 @@ const Timeline: React.FunctionComponent<TimelineModel> = (
         </TimelineNavItemRight>
       )}
       {/* slideshow button */}
-      {slideShowEnabled && (
+      {mode === 'HORIZONTAL' && slideShowEnabled && (
         <TimelineNavItemPlay>
           <TimelineNavButton
             theme={theme}

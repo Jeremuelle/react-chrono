@@ -10,7 +10,8 @@ export const TitleWrapper = styled.div<{
   font-size: 0.9rem;
   font-weight: 600;
   overflow: hidden;
-  padding: 0.25rem;
+  padding: 7px;
+  margin-right: 3px;
   visibility: ${(p) => (p.hide ? 'hidden' : 'visible')};
   text-align: ${(p) => (p.align ? p.align : '')};
 

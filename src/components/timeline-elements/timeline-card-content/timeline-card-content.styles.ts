@@ -24,7 +24,7 @@ export const TimelineItemContentWrapper = styled.section<{
     p.mode === 'HORIZONTAL'
       ? '0 auto'
       : p.mode !== 'VERTICAL_ALTERNATING'
-      ? '1em 0'
+      ? '1em 10px'
       : ''};
   max-width: ${(p) => p.maxWidth}px;
   min-height: ${(p) => p.minHeight}px;
